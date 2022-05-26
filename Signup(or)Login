@@ -4,10 +4,14 @@ from firebase_admin import credentials,db
 cred = credentials.Certificate("key.json")
 firebase_admin.initialize_app(cred,{"databaseURL":"https://python1-929e1-default-rtdb.firebaseio.com/"})
 store=db.reference("/")
+
 userchoice=input("If signup 's',or login 'l'")
+
 if(userchoice=='s'):
     print("Signup now")
+    
     username=input("enter username")
+    
     pswd=input("Enter password")
     while(len(pswd)<6):
         pswd=input("Enter password,min.6 characters")
@@ -20,10 +24,7 @@ if(userchoice=='s'):
     while('@' not in email):
         email=input("Enter proper email id")
         
-    store.child(username).update({"uname":username,
-                                  "password":pswd,
-                                  "phonenum":mobnum,
-                                  "emailid":email})
+    store.child(username).update({"uname":username,"password":pswd,"phonenum":mobnum,"emailid":email})
 
     print("Signup successful")
     userchoice='l'
